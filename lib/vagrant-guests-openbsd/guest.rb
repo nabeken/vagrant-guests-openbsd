@@ -14,7 +14,12 @@ module VagrantPlugins
       end
 
       def halt
-        vm.communicate.sudo("shutdown -hp now")
+        begin
+          vm.communicate.sudo("shutdown -hp now")
+        rescue IOError
+          # ignore IOError while shutting down
+          # See FreeBSD's halt implementation
+        end
       end
 
       def mount_shared_folder(name, guestpath, options)
