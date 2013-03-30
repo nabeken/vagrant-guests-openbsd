@@ -8,19 +8,7 @@ This plugins allows you to run OpenBSD under vagrant until Vagrant merges this c
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'vagrant-guests-openbsd', :git => 'git://github.com/nabeken/vagrant-guests-openbsd'
-
-And then execute:
-
-    $ bundle
-
-You should disable build-in OpenBSD plugin.
-
-For example, in Mac OS X:
-
-    $ sudo chmod 0000 /Applications/Vagrant/embedded/gems/gems/vagrant-1.1.2/plugins/guests/openbsd
+    $ vagrant plugin install vagrant-guests-openbsd
 
 ## Usage
 
@@ -28,7 +16,7 @@ Add this line to your Vagrantfile:
 
     Vagrant.require_plugin "vagrant-guests-openbsd"
     Vagrant.configure("2") do |config|
-      config.vm.guest = :openbsd
+      config.vm.guest = :openbsd_v2
 
       # If you want hostonly network
       config.vm.network :private_network, ip: "192.168.67.10", netmask: "255.255.255.0"
@@ -38,3 +26,5 @@ Add this line to your Vagrantfile:
       # other config
       # ...
     end
+
+You shoud use ':openbsd\_v2' for 'config.vm.guest' to avoid name conflict with build-in plugin.
