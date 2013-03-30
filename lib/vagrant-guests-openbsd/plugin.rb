@@ -15,6 +15,16 @@ module VagrantPlugins
         require_relative "guest"
         Guest
       end
+
+      config("openbsd_v2") do
+        require_relative "config"
+        Config
+      end
+
+      guest("openbsd_v2") do
+        require_relative "guest"
+        Guest
+      end
     end
   end
 end
