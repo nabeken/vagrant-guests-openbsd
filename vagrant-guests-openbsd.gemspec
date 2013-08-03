@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "vagrant-guests-openbsd"
-  spec.version       = "0.0.2"
+  spec.version       = "0.0.3"
   spec.authors       = ["TANABE Ken-ichi"]
   spec.email         = ["nabeken@tknetworks.org"]
   spec.description   = %q{Vagrant Guests Plugin for OpenBSD}

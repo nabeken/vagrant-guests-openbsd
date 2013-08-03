@@ -1,13 +1,26 @@
+require 'spec_helper'
 require 'vagrant-guests-openbsd/plugin'
+require 'vagrant-guests-openbsd/cap/change_host_name'
+require 'vagrant-guests-openbsd/cap/configure_networks'
+require 'vagrant-guests-openbsd/cap/halt'
+require 'vagrant-guests-openbsd/cap/mount_nfs_folder'
 
 describe VagrantPlugins::GuestOpenBSD::Plugin do
-  it "should be loaded with openbsd" do
-    described_class.guest[:openbsd].should == VagrantPlugins::GuestOpenBSD::Guest
-    described_class.components.configs[:top][:openbsd].should == VagrantPlugins::GuestOpenBSD::Config
-  end
+  [:openbsd, :openbsd_v2].each do |os|
+    it "should be loaded with #{os}" do
+      expect(described_class.components.guests[os].first).to eq(VagrantPlugins::GuestOpenBSD::Guest)
+    end
 
-  it "should be loaded with openbsd_v2" do
-    described_class.guest[:openbsd_v2].should == VagrantPlugins::GuestOpenBSD::Guest
-    described_class.components.configs[:top][:openbsd_v2].should == VagrantPlugins::GuestOpenBSD::Config
+    {
+      :halt               => VagrantPlugins::GuestOpenBSD::Cap::Halt,
+      :change_host_name   => VagrantPlugins::GuestOpenBSD::Cap::ChangeHostName,
+      :configure_networks => VagrantPlugins::GuestOpenBSD::Cap::ConfigureNetworks,
+      :mount_nfs_folder   => VagrantPlugins::GuestOpenBSD::Cap::MountNFSFolder
+    }.each do |cap, cls|
+      it "should be capable of #{cap} with #{os}" do
+        expect(described_class.components.guest_capabilities[os][cap])
+          .to eq(cls)
+      end
+    end
   end
 end
