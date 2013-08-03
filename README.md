@@ -22,6 +22,8 @@ Add this line to your Vagrantfile:
       config.vm.network :private_network, ip: "192.168.67.10", netmask: "255.255.255.0"
       # If you want to mount folders with nfs
       config.vm.synced_folder "../", "/vagrant", :nfs => true
+      # If you want not to mount any folders, set :disabled => true
+      config.vm.synced_folder "../", "/vagrant", :disabled => true
 
       # other config
       # ...
