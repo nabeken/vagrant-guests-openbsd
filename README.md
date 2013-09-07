@@ -2,7 +2,9 @@
 
 # vagrant-guests-openbsd
 
-Vagrant >= 1.1 has a built-in OpenBSD plugin but the plugin lacks multiple network and nfs mount support.
+**OpenBSD support in Vagrant >= 1.3.0 has been improved. This plugin is no longer necessary.**
+
+Vagrant >= 1.1 && <= 1.2.7 has a built-in OpenBSD plugin but the plugin lacks multiple network and nfs mount support.
 
 This plugins allows you to run OpenBSD under vagrant until Vagrant merges this changes.
 
